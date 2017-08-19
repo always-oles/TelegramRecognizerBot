@@ -27,30 +27,38 @@ bot.onText(/help/gi, (msg, match) => {
 // Listen for any kind of message
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
+
   // if bot received a photo (as intended)
   if(msg.photo) {
     // ask nicely to wait
     bot.sendMessage(chatId, '<pre>Just a moment...</pre>', {parse_mode : 'HTML'});
+
     // get the best quality photo (last one in array)
     const file = msg.photo[msg.photo.length-1];
+
     // make URL for request
     const file_url = bot_url + 'getFile?file_id=' + file.file_id;
+
     // make a GET request to Telegram servers, asking for a file path by file ID
     REST.get(file_url).on('complete', (response) => {
+
       if (response.result) {
         // final URL of the best quality image sent by user
         const fullsize_url = api_url + 'file/bot' + config.token + '/' + response.result.file_path;
+
         // detect labels
         vision.labelDetection({ source: { imageUri: fullsize_url } })
         .then((results) => {
           const labels = results[0].labelAnnotations;
+
           // let's init a final message to user
           let result = '<b>I\'m ready, here is what I see:</b>\n';
+
           // concat all labels descriptions and scores + format them nicely
           labels.forEach((label) => {
             result += '<code>' + label.description + ': ' + Math.round(label.score*100) + '%; </code> \n';
           });
-          console.log(result);
+
           bot.sendMessage(chatId, result, {parse_mode : "HTML"});
         })
         .catch((error) => {
