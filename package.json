@@ -1,0 +1,16 @@
+{
+  "name": "recognizer",
+  "version": "1.0.0",
+  "description": "Telegram bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oles Bolotniuk",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/vision": "^0.12.0",
+    "node-telegram-bot-api": "^0.28.0",
+    "restler": "^3.4.0"
+  }
+}
