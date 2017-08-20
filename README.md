@@ -21,7 +21,7 @@ I managed to create a file called `config.js` that's required at the start of
 
 ```javascript
   module.exports = {
-    token: '<Your Telegram token>', // telegram token
+    token: '<Your Telegram token>',
     projectId: '<Google console project ID>',
     keyFilename: '<Path to google service key *.json>'
   };
@@ -34,6 +34,5 @@ installed all dependencies - feel free to start a node
 ```
 then send your Rick a message (*/start*, *help*, *sticker* or a *photo*)
 
-That's it! 
-
+That's it, enjoy!
 
