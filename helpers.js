@@ -13,7 +13,6 @@ module.exports = {
     for(let i in descriptions) {
       result += `<code> ${descriptions[i]} (${translations[i].trim()}): ${Math.round(scores[i]*100)}%; </code> \n`;
     }
-
     return result;
   }
 };

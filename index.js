@@ -19,7 +19,11 @@ const bot = new TelegramBot(config.token, {polling: true});
 // adding a bot to contacts or manually by typing /start
 bot.onText(/\/start/, (msg, match) => {
   bot.sendMessage(msg.chat.id, `Hello there, my name is Rick! Send me a photo and I'll tell you what I see on it. 😎`);
-  return;
+});
+
+// kind greeting
+bot.onText(/sup|hello|hi|hallo|hey/, (msg, match) => {
+  bot.sendMessage(msg.chat.id, `Hello there! ☺️`);
 });
 
 // basic help message
@@ -85,7 +89,6 @@ bot.on('photo', (msg) => {
             .then((response) => {
               const finalMessage = '<b>I\'m ready, here is what I see:</b>\n' +
               helpers.makeLookGood(descriptions, scores, response[0]) + '\n';
-
               bot.sendMessage(chatId, finalMessage, {parse_mode : "HTML"});
             })
             .catch((err) => {
