@@ -9,6 +9,7 @@
   "author": "Oles Bolotniuk",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^1.0.0",
     "@google-cloud/vision": "^0.12.0",
     "node-telegram-bot-api": "^0.28.0",
     "restler": "^3.4.0"
