@@ -22,8 +22,12 @@ bot.onText(/\/start/, (msg, match) => {
 });
 
 // kind greeting
-bot.onText(/sup|hello|hi|hallo|hey/, (msg, match) => {
-  bot.sendMessage(msg.chat.id, `Hello there! ☺️`);
+bot.onText(/привет|здравствуй|здрасте|прив|хей|sup|hello|hi|hallo|hey|greeting|yo/ig, (msg, match) => {
+  let username = '';
+  if (msg.from.first_name) {
+    username = `, ${msg.from.first_name}`;
+  }
+  bot.sendMessage(msg.chat.id, `Hello there${username}! ☺️`);
 });
 
 // basic help message
