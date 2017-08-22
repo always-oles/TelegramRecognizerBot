@@ -14,7 +14,8 @@ in the project folder to install all nodejs project dependencies.
 ### Important:
 You have to **manually** add files that are **not included** (*because of the rules of privacy*) but required to launch a bot:
 * Google console project key (a JSON file) (https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account) (*I used a Google cloud console to create one*)
-* Telegram bot token (https://core.telegram.org/bots#3-how-do-i-create-a-bot)
+* **Config file, which includes** `Telegram bot token` (https://core.telegram.org/bots#3-how-do-i-create-a-bot)
+* *Optional:* deploy config file (see the Gulp section below) 
 
 I managed to create a file called `config.js` that's required at the start of 
 `index.js` and it's structure looks like this: 
