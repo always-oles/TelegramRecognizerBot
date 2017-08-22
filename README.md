@@ -3,7 +3,13 @@
 #### Currently working version of Rick (try me): https://t.me/ao_recognizer_bot
 *`Important note: bot is not saving any of your data/photos, he respects your privacy.`*
 
+## What can he do?
+* say hello
+* analyze the labels on image/photo
+* answer to stickers (sends one of his 4 favorites)
+* look good
 
+## Installation: 
 To **get started** - you must have installed NPM (my version is 5.3.0) and Node (8.4.0).
 Then just perform a command 
 ```
@@ -27,7 +33,6 @@ I managed to create a file called `config.js` that's required at the start of
     keyFilename: '<Path to google service key *.json>'
   };
 ```
-
 
 So when you **already have** your `config.js` and a `.json` key inside the project directory, 
 installed all dependencies - feel free to start an app:
