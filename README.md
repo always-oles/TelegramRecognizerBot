@@ -58,11 +58,11 @@ So when I added something new - I run:
 ```
   gulp manual-deploy
 ```
-then checking changes on live and if everything is ok - push changes to github and run
+then checking changes on live and if everything is ok - push changes to github and run a
 ```
   gulp deploy
 ```
-command that pulls everything from github and restarts the bot.
+command that pulls everything from github and restarts the bot on remote server.
 
 Rick is currently up and running on Digital Ocean VPS (Ubuntu 16.04 + nginx). 
 There is a nice tutorial right here: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04
