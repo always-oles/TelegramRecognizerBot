@@ -59,4 +59,5 @@ typings/
 
 # ignore config
 config.js
+deploy_config.js
 TelegramBotKey.json

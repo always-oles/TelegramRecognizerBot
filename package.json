@@ -13,5 +13,9 @@
     "@google-cloud/vision": "^0.12.0",
     "node-telegram-bot-api": "^0.28.0",
     "restler": "^3.4.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-ssh": "^0.6.0"
   }
 }

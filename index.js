@@ -22,7 +22,7 @@ bot.onText(/\/start/, (msg, match) => {
 });
 
 // kind greeting
-bot.onText(/привет|здравствуй|здрасте|прив|хей|sup|hello|hi|hallo|hey|greeting|yo/ig, (msg, match) => {
+bot.onText(/привет|йоу|здравствуй|здрасте|прив|хей|sup|hello|hi|hallo|hey|greeting|yo/ig, (msg, match) => {
   let username = '';
   if (msg.from.first_name) {
     username = `, ${msg.from.first_name}`;
