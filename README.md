@@ -37,3 +37,26 @@ then send your Rick a message (*/start*, *help*, *sticker* or a *photo*)
 
 That's it, enjoy!
 
+### Also I'm using Gulp to automate deployment of Rick to remote server.
+For this you have to add another config file that's not included to this repo, I have a file called `deploy_config.js` that is mentioned (required) in `gulpfile.js`.
+The structure of `deploy_config.js` looks like this: 
+``` javascript
+  module.exports = {
+    host: <YOUR VPS IP ADDRESS>, 
+    port: 22,
+    username: <YOUR USERNAME>,
+    password: <YOUR PASSWORD>
+  };
+```
+And when I added something new - I run a 
+```
+  gulp manual-deploy
+```
+to check changes on live mode and when I'm done - I just push changes to github and perform a
+```
+  gulp deploy
+```
+command that pulls everything from github and restarts the bot.
+
+Rick is currently up and running on Digital Ocean VPS (Ubuntu 16.04 + nginx). 
+There is a nice tutorial right here: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04
