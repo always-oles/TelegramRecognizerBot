@@ -54,11 +54,11 @@ The structure of `deploy_config.js` looks like this:
     password: <YOUR PASSWORD>
   };
 ```
-And when I added something new - I run a 
+So when I added something new - I run:
 ```
   gulp manual-deploy
 ```
-to check changes on live mode and when I'm done - I just push changes to github and perform a
+then checking changes on live and if everything is ok - push changes to github and run
 ```
   gulp deploy
 ```
