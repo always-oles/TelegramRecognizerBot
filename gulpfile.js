@@ -6,10 +6,10 @@ const gulp          = require('gulp'),
       ENTRY_POINT   = 'index.js',
       DEPLOY_CONFIG = require('./deploy_config');
 
-var gulpSSH = new GulpSSH({
+const gulpSSH = new GulpSSH({
   ignoreErrors: false,
   sshConfig: DEPLOY_CONFIG
-})
+});
 
 // Deploy release on remote server via git
 gulp.task('deploy', () => {
@@ -18,17 +18,17 @@ gulp.task('deploy', () => {
 });
 
 // Copy all files (excepting node_modules) from local environment to remote server
-gulp.task('manual-deploy', function () {
+gulp.task('manual-deploy', () => {
   return gulp
     .src(['**', '!**/node_modules/**'])
     .pipe(gulpSSH.dest(FOLDER))
-    .pipe(gulpSSH.shell([`cd ${FOLDER}`, 'npm install', `pm2 restart ${ENTRY_POINT}`]))
+    .pipe(gulpSSH.shell([`cd ${FOLDER}`, 'npm install', `pm2 restart ${ENTRY_POINT}`]));
 });
 
 // Copy all files from local environment to remote server
-gulp.task('full-deploy', function () {
+gulp.task('full-deploy', () => {
   return gulp
     .src(['**'])
     .pipe(gulpSSH.dest(FOLDER))
-    .pipe(gulpSSH.shell([`cd ${FOLDER}`, 'npm install', `pm2 restart ${ENTRY_POINT}`]))
+    .pipe(gulpSSH.shell([`cd ${FOLDER}`, 'npm install', `pm2 restart ${ENTRY_POINT}`]));
 });
