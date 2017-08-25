@@ -1,7 +1,8 @@
 ## Hello! This is a Telegram image/label recognition bot, called Rick.
 ### He is written in NodeJS and uses Google Vision/Translate APIs to recognize an image and tell us what's on it.
 #### Currently working version of Rick (try me): https://t.me/ao_recognizer_bot
-*`Important note: bot is not saving any of your data/photos, he respects your privacy.`*
+*`Important note: bot is not saving any of your data/photos, he respects your privacy.
+Also feel free to use this project as a boilerplate for your own telegram bot.`*
 
 ## What can he do?
 * say hello
