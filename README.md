@@ -1,9 +1,15 @@
 ## Hello! This is a Telegram image/label recognition bot, called Rick.
 ### He is written in NodeJS and uses Google Vision/Translate APIs to recognize an image and tell us what's on it.
 #### Currently working version of Rick (try me): https://t.me/ao_recognizer_bot
-*`Important note: bot is not saving any of your messages/photos, he respects your privacy. But he does save your username for /stats`*
+*`Important note: bot is not saving any of your messages/photos, he respects your privacy. But he does save your username for /stats. Also feel free to use this project as a boilerplate for your own telegram bot.`*
 
+## What can he do?
+* say hello
+* analyze the labels on image/photo
+* answer to stickers (sends one of his 4 favorites)
+* look good
 
+## Installation:
 To **get started** - you must have installed NPM (my version is 5.3.0) and Node (8.4.0).
 Then just perform a command
 ```
@@ -28,7 +34,6 @@ I managed to create a file called `config.js` that's required at the start of
   };
 ```
 
-
 So when you **already have** your `config.js` and a `.json` key inside the project directory,
 installed all dependencies - feel free to start an app:
 ```
@@ -49,15 +54,15 @@ The structure of `deploy_config.js` looks like this:
     password: <YOUR PASSWORD>
   };
 ```
-And when I added something new - I run a
+So when I added something new - I run:
 ```
   gulp manual-deploy
 ```
-to check changes on live mode and when I'm done - I just push changes to github and perform a
+then checking changes on live and if everything is ok - push changes to github and run a
 ```
   gulp deploy
 ```
-command that pulls everything from github and restarts the bot.
+command that pulls everything from github and restarts the bot on remote server.
 
 Rick is currently up and running on Digital Ocean VPS (Ubuntu 16.04 + nginx).
 There is a nice tutorial right here: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04
