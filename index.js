@@ -58,7 +58,7 @@ If you 😍<b>like me</b>😍 - leave a star here: <a href="https://github.com/a
   );
 });
 
-// bot stats stats
+// bot stats
 bot.onText(/\/stats/gi, (msg, match) => {
   let uniqueUsers = 0, totalHits = 0;
 
@@ -76,7 +76,7 @@ bot.onText(/\/stats/gi, (msg, match) => {
   });
 });
 
-// debugging any incoming message
+// any incoming message
 bot.on('message', (msg) => {
 
   let username = msg.from.username || msg.from.first_name || 'anonymous';
