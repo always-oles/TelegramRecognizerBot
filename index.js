@@ -77,7 +77,7 @@ bot.onText(/\/stats/gi, (msg, match) => {
       }
     });
 
-    bot.sendMessage(msg.chat.id, `<b>Current stats</b>: \nUnique users: ${uniqueUsers} \nYour hits: ${userHits} \nTotal bot hits: ${totalHits}`, {parse_mode: 'HTML'});
+    bot.sendMessage(msg.chat.id, `<b>Current stats</b>: \nUnique users: ${uniqueUsers} \nYour hits: ${userHits} \nAll users hits: ${totalHits}`, {parse_mode: 'HTML'});
   });
 });
 
