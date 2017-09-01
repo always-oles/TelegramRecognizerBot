@@ -60,7 +60,8 @@ If you 😍<b>like me</b>😍 - leave a star here: <a href="https://github.com/a
 
 // bot stats
 bot.onText(/\/stats/gi, (msg, match) => {
-  let uniqueUsers = 0, totalHits = 0;
+  let uniqueUsers = 1, totalHits = 1, userHits = 1;
+  let me = msg.from.username || msg.from.first_name;
 
   // count unique users and total hits
   dbModels.User.find({})
@@ -70,9 +71,13 @@ bot.onText(/\/stats/gi, (msg, match) => {
 
     users.forEach((user) => {
       totalHits += user.hits;
+
+      if (user.name == me) {
+        userHits = user.hits;
+      }
     });
 
-    bot.sendMessage(msg.chat.id, `<b>Current stats</b>: \nUnique users: ${uniqueUsers} \nTotal bot hits: ${totalHits}`, {parse_mode: 'HTML'});
+    bot.sendMessage(msg.chat.id, `<b>Current stats</b>: \nUnique users: ${uniqueUsers} \nYour hits: ${userHits} \nTotal bot hits: ${totalHits}`, {parse_mode: 'HTML'});
   });
 });
 
