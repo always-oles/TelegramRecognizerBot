@@ -1,22 +1,40 @@
 // private data
-const config = require('./config');
-const helpers = require('./helpers');
+const config    = require('./config');
+const helpers   = require('./helpers');
+const dbModels  = require('./dbSchema');
+
 // google vision API, initializing with CONFIG
 const vision = require('@google-cloud/vision')(config);
+
 // google translate api
 const translateClient = require('@google-cloud/translate')(config);
-// The target language
+
+// default language
 const targetLanguage = 'ru';
+
 // for easy REST queries
 const REST = require('restler');
+
+// telegram bot API
 const TelegramBot = require('node-telegram-bot-api');
+
+// helpers
 const apiURL = 'https://api.telegram.org/';
 const botURL = apiURL + 'bot' + config.token + '/'
+
+// connect to db to save stats
+const mongoose = require('mongoose');
+mongoose.Promise = Promise;
+
+const db = mongoose.connect('mongodb://localhost/stats');
+
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(config.token, {polling: true});
 
-// default start message, fires when user clicks on START button right after
-// adding a bot to contacts or manually by typing /start
+/**
+  default start message, fires when user clicks on START button right after
+  adding a bot to contacts or manually by typing /start
+**/
 bot.onText(/\/start/, (msg, match) => {
   bot.sendMessage(msg.chat.id, `Hello there, my name is Rick! Send me a photo and I'll tell you what I see on it. 😎`);
 });
@@ -34,13 +52,52 @@ bot.onText(/привет|йоу|здравствуй|здрасте|прив|х�
 bot.onText(/help/gi, (msg, match) => {
   bot.sendMessage(msg.chat.id,
     `My name is Rick, I'm a bot that uses Google vision API to recognize image labels.
+You can send me hello, stickers, photos/images or ask for /stats.
 If you 😍<b>like me</b>😍 - leave a star here: <a href="https://github.com/always-oles/TelegramRecognizerBot">Github page</a>`,
     {parse_mode: 'HTML'}
   );
 });
 
+// bot stats stats
+bot.onText(/\/stats/gi, (msg, match) => {
+  let uniqueUsers = 0, totalHits = 0;
+
+  // count unique users and total hits
+  dbModels.User.find({})
+  .exec()
+  .then((users) => {
+    uniqueUsers = users.length;
+
+    users.forEach((user) => {
+      totalHits += user.hits;
+    });
+
+    bot.sendMessage(msg.chat.id, `<b>Current stats</b>: \nUnique users: ${uniqueUsers} \nTotal bot hits: ${totalHits}`, {parse_mode: 'HTML'});
+  });
+});
+
 // debugging any incoming message
 bot.on('message', (msg) => {
+
+  let username = msg.from.username || msg.from.first_name || 'anonymous';
+
+  // add user to db
+  dbModels.User.create({
+    name: username,
+    hits: 0
+  }, (error) => {
+
+    // if he was added already
+    if (error.code == '11000') {
+
+      // add +1 hits for him
+      dbModels.User.findOneAndUpdate(
+        { name: username },
+        { $inc: { hits: 1 } }
+      ).exec();
+    }
+  });
+
   console.log(msg);
 });
 
