@@ -1,7 +1,7 @@
 // private data
 const config    = require('./config');
 const helpers   = require('./helpers');
-const dbModels  = require('./dbSchema');
+const dbModels  = require('./db_schema');
 
 // google vision API, initializing with CONFIG
 const vision = require('@google-cloud/vision')(config);
